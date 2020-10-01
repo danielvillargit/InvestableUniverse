@@ -25,12 +25,13 @@ class MacroEco:
        def WordSearch(self):
            self.csvimport2=self.csvimport['Symbol']
            for k,i in enumerate(self.csvimport['Symbol']):
-               #print(i)
-               print(k)
+               print(i)
+               
                for j in i:
-                   #print(j)
-                   if j=="." and k<4500:
+                   print(j)
+                   if "." in j:
                        self.csvimport2=self.csvimport.drop(self.csvimport.index[k], inplace=True)
+                       self.csvimport2.reset_index(inplace=True)
                        #,inplace=True)
            print(self.csvimport2)
        WordSearch(self)
