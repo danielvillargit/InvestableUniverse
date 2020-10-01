@@ -41,12 +41,25 @@ c=MacroEco()
 c.Exchange()
 
         
-                            
-            csvimport=csvimport[~csvimport['Symbol'.str.contains('.')]]
-            
-            
-            csv3=pd.merge(csvimport,csvimport2[['Symbol','Name']],how='left',left_on=['Symbol'],right_on=['Symbol'])
-
+    def AmerConnect():
+        #Connecting to TDAmeritradeAPI
+        api_key=str(input("Enter TD Ameritrade API Key: "))
+        #0 Starts on Monday
+        ticker = 'ET'
+        baseurl = "https://api.tdameritrade.com/v1/marketdata/{}/pricehistory".format(ticker)
+        par_=['Company','description','bid','ask','volatility','openInterest','strikePrice','daysToExpiration']
+        sendparam = {'apikey':api_key,'periodType': 'day', 'period': '2', 'frequencyType':'day','frequency':'1','needExtendedHoursData':'false'}
+        content_ = requests.get(url = baseurl, params = sendparam)
+        dat = content_.json()
+        print(dat)
+        
+    AmerConnect()
+    
+        
+        
+        
+        
+ 
 def GetEarnings(self):
         #Finviz scrape earnings
         driver = webdriver.Chrome(ChromeDriverManager().install())
